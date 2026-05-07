@@ -32,7 +32,9 @@ elif menu == "Chatbot":
         st.write("AI Answer will come here... (connect chatbot.py)")
 
 # TRANSLATOR
-from modules.translator import translate_text
+
+import streamlit as st
+from modules.translator import translate_textfrom modules.translator import translate_text
 
 elif menu == "Translator":
     st.subheader("🌍 Translator")
