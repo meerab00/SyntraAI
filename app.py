@@ -32,11 +32,7 @@ elif menu == "Chatbot":
         st.write("AI Answer will come here... (connect chatbot.py)")
 
 # TRANSLATOR
-
-import streamlit as st
-from modules.py import translater.py
-
-elif menu == "Translator":
+    elif menu == "Translator":
     st.subheader("🌍 Translator")
 
     text = st.text_area("Enter text")
@@ -48,11 +44,6 @@ elif menu == "Translator":
             st.success(result)
         else:
             st.warning("Please enter text first")
-
-    lang = st.selectbox("Translate to:", ["English", "Urdu"])
-
-    if st.button("Translate"):
-        st.success("Translated text will appear here")
 
 # VOICE
 elif menu == "Voice":
