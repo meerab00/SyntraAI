@@ -34,7 +34,7 @@ elif menu == "Chatbot":
 # TRANSLATOR
 
 import streamlit as st
-from modules.translator import translate_textfrom modules.translator import translate_text
+from modules.py import translater.py
 
 elif menu == "Translator":
     st.subheader("🌍 Translator")
