@@ -32,10 +32,20 @@ elif menu == "Chatbot":
         st.write("AI Answer will come here... (connect chatbot.py)")
 
 # TRANSLATOR
+from modules.translator import translate_text
+
 elif menu == "Translator":
     st.subheader("🌍 Translator")
 
     text = st.text_area("Enter text")
+    lang = st.selectbox("Language", ["en", "ur", "fr", "es"])
+
+    if st.button("Translate"):
+        if text.strip():
+            result = translate_text(text, lang)
+            st.success(result)
+        else:
+            st.warning("Please enter text first")
 
     lang = st.selectbox("Translate to:", ["English", "Urdu"])
 
