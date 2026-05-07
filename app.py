@@ -1,78 +1,67 @@
-import streamlit as st
 
-# Page config
+import streamlit as st
+from modules.translator import translate_text
+from modules.summarizer import summarize_text
+
 st.set_page_config(page_title="SyntraAI", page_icon="🤖", layout="wide")
 
-# Title
 st.title("🤖 SyntraAI - AI Assistant")
 
-# Sidebar menu
+# Sidebar Menu
 menu = st.sidebar.selectbox(
     "Choose Feature",
-    ["Home", "Chatbot", "Translator", "Voice", "Summarizer", "Calculator"]
+    ["Home", "Translator", "Summarizer", "Calculator"]
 )
 
 # HOME
 if menu == "Home":
     st.subheader("Welcome to SyntraAI 🚀")
-    st.write("Your all-in-one AI Assistant App")
-
-    st.info("Select a feature from sidebar to start")
-
-# CHATBOT
-elif menu == "Chatbot":
-    st.subheader("💬 AI Chatbot")
-
-    user_input = st.text_input("Ask anything:")
-
-    if st.button("Send"):
-        # yahan tum apna chatbot module connect karna
-        st.success(f"You asked: {user_input}")
-        st.write("AI Answer will come here... (connect chatbot.py)")
+    st.write("AI Assistant App (Working Version)")
 
 # TRANSLATOR
 elif menu == "Translator":
     st.subheader("🌍 Translator")
 
     text = st.text_area("Enter text")
-
-    lang = st.selectbox("Translate to:", ["English", "Urdu"])
+    lang = st.selectbox("Select language", ["en", "ur", "fr", "es"])
 
     if st.button("Translate"):
-        st.success("Translated text will appear here")
-
-# VOICE
-elif menu == "Voice":
-    st.subheader("🎤 Voice Assistant")
-
-    st.write("Voice feature will be connected from voice.py")
+        if text.strip():
+            result = translate_text(text, lang)
+            st.success(result)
+        else:
+            st.warning("Please enter text")
 
 # SUMMARIZER
 elif menu == "Summarizer":
-    st.subheader("📝 Text Summarizer")
+    st.subheader("📝 Summarizer")
 
-    text = st.text_area("Enter long text")
+    text = st.text_area("Enter paragraph")
 
     if st.button("Summarize"):
-        st.success("Summary will appear here")
+        if text.strip():
+            result = summarize_text(text)
+            st.success(result)
+        else:
+            st.warning("Please enter text")
 
 # CALCULATOR
 elif menu == "Calculator":
-    st.subheader("🧮 Smart Calculator")
+    st.subheader("🧮 Calculator")
 
-    num1 = st.number_input("Enter first number")
-    num2 = st.number_input("Enter second number")
+    num1 = st.number_input("Number 1")
+    num2 = st.number_input("Number 2")
 
-    operation = st.selectbox("Operation", ["Add", "Subtract", "Multiply", "Divide"])
+    op = st.selectbox("Operation", ["Add", "Subtract", "Multiply", "Divide"])
 
     if st.button("Calculate"):
-        if operation == "Add":
+        if op == "Add":
             st.success(num1 + num2)
-        elif operation == "Subtract":
+        elif op == "Subtract":
             st.success(num1 - num2)
-        elif operation == "Multiply":
+        elif op == "Multiply":
             st.success(num1 * num2)
-        elif operation == "Divide":
+        elif op == "Divide":
             if num2 != 0:
                 st.success(num1 / num2)
             else:
